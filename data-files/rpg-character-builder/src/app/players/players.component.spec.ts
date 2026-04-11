@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayersComponent } from './players.component';
 
 describe('PlayersComponent', () => {
@@ -19,5 +18,12 @@ describe('PlayersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  // Hands on 3.1 Tests
+  it('should correctly display list of characters', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const playersList = compiled.querySelectorAll('.player-card');
+    expect(playersList.length).toBe(component.players.length);
   });
 });

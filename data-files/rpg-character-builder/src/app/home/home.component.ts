@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
   `,
   styles: `
     main {
-      max-width: 70%;
+      max-width: 85%;
       margin: 0 auto;
     }
 

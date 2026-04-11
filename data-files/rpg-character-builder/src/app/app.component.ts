@@ -57,6 +57,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       background-color: #2C1340;
       color: #D9DCD6;
       text-align: center;
+      min-height: 100vh;
     }
 
     h1 {
