@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="home-wrapper">
       <main class="main-content-home">
+
         <h1>Welcome!</h1>
 
         <p>Kaitlyn's Space Themed RPG Character Builder combines two important passions: Professor Krasso's love of RPG examples, and Kaitlyn's love of the space genre. Spawned by her recent re-reading and the movie release of “Project Hail Mary,” Kaitlyn chose to unite these passions into a singular RPG web application.</p>

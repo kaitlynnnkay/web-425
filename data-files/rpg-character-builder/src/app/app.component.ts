@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
             <a routerLink="/create-character">Create Character</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             <a routerLink="/create-guild">Create Guild</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             <a routerLink="/character-faction">Character Faction</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            @if (email) {
+              <p class="nav-content-p">Welcome, {{ email }}!&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+              <button class="nav-content-button" (click)="signout()">Sign Out</button>
+            } @else {
             <a routerLink="/signin">Sign In</a>
+            }
         </nav>
 
         <main class="main-content">
@@ -73,6 +80,22 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       font-family: 'Exo 2', sans-serif;
     }
 
+    .nav-content-button {
+      color: #5FBD56;
+      text-decoration: none;
+      font-size: 1.25em;
+      background: none;
+      border: none;
+      font: inherit;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .nav-content-button:hover {
+      text-decoration: underline;
+    }
+
     .nav-content, .nav-content a {
       color: #5FBD56;
       text-decoration: none;
@@ -87,6 +110,14 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 
     .nav-content a:hover, .footer-nav-content a:hover {
       text-decoration: underline;
+    }
+
+    .nav-content-p {
+      display: inline-flex;
+      align-items: center;
+      font: inherit;
+      color: inherit;
+      font-size: 1.25em;
     }
 
     .footer-nav-content {
@@ -107,4 +138,20 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 
 export class AppComponent {
   title = 'rpg-character-builder';
+
+  email?: string;
+
+  constructor(private authService: AuthService, private cookieService: CookieService) {
+  }
+
+  ngOnInit() {
+    this.authService.getAuthState().subscribe((isAuth) => {
+      if (isAuth) { this.email = this.cookieService.get('session_user');
+      }
+    });
+  }
+
+  signout() {
+    this.authService.signout();
+  }
 }
