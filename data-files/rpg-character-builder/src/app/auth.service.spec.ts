@@ -9,7 +9,7 @@ describe('AuthService', () => {
   let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(() => {
-    cookieServiceSpy = jasmine.createSpyObj('CookieService', ['set', 'deleteALL']);
+    cookieServiceSpy = jasmine.createSpyObj('CookieService', ['set', 'deleteAll']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
