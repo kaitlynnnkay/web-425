@@ -13,12 +13,12 @@ import { CommonModule } from '@angular/common';
       <ul>
         @for (taco of order.tacos; let i = $index; track taco) {
           <li class="line-item">
-            <strong>Item {{ i + 1 }}</strong>
+            <strong class="identifier">Item {{ i + 1 }}</strong>
             <div class="line-details">
-              <div><strong>{{ taco.name }}</strong></div>
-              <div>Quantity: {{ taco.quantity }}</div>
-              <div>Unit Price: {{ taco.price | currency:'USD':'symbol':'1.2-2' }}</div>
-              <div>Subtotal: {{ (taco.price * (taco.quantity ?? 1)) | currency:'USD':'symbol':'1.2-2' }}</div>
+              <div class="name"><strong>{{ taco.name }}</strong></div>
+              <div class="qty">Quantity: {{ taco.quantity }}</div>
+              <div class="unitPrice">Unit Price: {{ taco.price | currency:'USD':'symbol':'1.2-2' }}</div>
+              <div class="subtotal">Subtotal: {{ (taco.price * (taco.quantity ?? 1)) | currency:'USD':'symbol':'1.2-2' }}</div>
 
               @if (taco.noOnions || taco.noCilantro) {
                 <div class="customizations">
